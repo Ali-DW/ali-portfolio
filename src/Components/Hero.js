@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { ArrowDown, Download, Github, Linkedin } from 'lucide-react';
 import { Container, Button, GradientText } from '../Styles/GlobalStyles';
+import meImg from './me.jpg';
 
 const HeroSection = styled.section`
   min-height: 100vh;
@@ -166,7 +167,6 @@ const ProfileImage = styled(motion.div)`
   }
 
   &::before {
-    content: '';
     position: absolute;
     inset: 3px;
     background: ${props => props.theme.colors.dark};
@@ -175,7 +175,6 @@ const ProfileImage = styled(motion.div)`
   }
 
   &::after {
-    content: 'AS';
     position: relative;
     z-index: 2;
     background: ${props => props.theme.gradients.primary};
@@ -184,6 +183,14 @@ const ProfileImage = styled(motion.div)`
     background-clip: text;
   }
 `;
+const ProfileImageTag = styled.img`
+  width: 96%;
+  height: 96%;
+  object-fit: cover;
+  border-radius: ${props => props.theme.borderRadius.full};
+  position: relative;
+  z-index: 100;
+  `
 
 const FloatingElements = styled.div`
   position: absolute;
@@ -310,7 +317,9 @@ const Hero = () => {
             initial={{ scale: 0, rotate: 180 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
-          />
+          >
+          <ProfileImageTag src={meImg} alt="Ali Slil" />
+          </ProfileImage>
           
           <FloatingElements>
             <FloatingElement
