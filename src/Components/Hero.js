@@ -5,6 +5,21 @@ import { motion } from 'framer-motion';
 import { ArrowDown, Download, Github, Linkedin } from 'lucide-react';
 import { Container, Button, GradientText } from '../Styles/GlobalStyles';
 import meImg from './me.jpg';
+import { useEffect, useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
+
+
+const greetings = [
+  { text: "👋 Hello, I'm", key: 'en' },
+  { text: "👋 مرحباً، أنا", key: 'ar' },
+  { text: "👋 Hola, soy", key: 'es' },
+  { text: "👋 こんにちは、私は", key: 'jp' },
+  { text: "👋 Bonjour, je suis", key: 'fr' },
+  { text: "👋 Hallo, ich bin", key: 'de' },
+];
+
+const GREETING_INTERVAL = 2200; // ms
+
 
 const HeroSection = styled.section`
   min-height: 100vh;
@@ -41,6 +56,8 @@ const HeroContent = styled(Container)`
     text-align: center;
   }
 `;
+
+
 
 const HeroText = styled.div`
   z-index: 3;
@@ -229,6 +246,15 @@ const ScrollText = styled.span`
 `;
 
 const Hero = () => {
+  const [greetingIndex, setGreetingIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setGreetingIndex((prev) => (prev + 1) % greetings.length);
+    }, GREETING_INTERVAL);
+    return () => clearInterval(interval);
+  }, []);
+
   const scrollToProjects = () => {
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -274,9 +300,18 @@ const Hero = () => {
             initial="hidden"
             animate="visible"
           >
-            <Greeting variants={itemVariants}>
-              👋 Hello, I'm
-            </Greeting>
+            <AnimatePresence mode="wait">
+              <Greeting
+                key={greetings[greetingIndex].key}
+                variants={itemVariants}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.6 }}
+              >
+                {greetings[greetingIndex].text}
+              </Greeting>
+            </AnimatePresence>
             
             <Title variants={itemVariants}>
               <GradientText>Ali Slil</GradientText>
