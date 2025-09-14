@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from 'react';
+import { ThemeProvider } from 'styled-components';
+import { motion, AnimatePresence } from 'framer-motion';
+import { theme } from './Styles/Theme';
+import { GlobalStyles } from './Styles/GlobalStyles';
+
+// Import components (we'll create these next)
+import Header from './Components/Header.js';
+import Hero from './Components/Hero.js';
+import About from './Components/About.js';
+import Projects from './Components/Projects.js';
+import Skills from './Components/Skills.js';
+import Contact from './Components/Contact.js';
+import Footer from './Components/Footer.js';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Header />
+          <main>
+            <Hero />
+            <About />
+            <Projects />
+            <Skills />
+            <Contact />
+          </main>
+          <Footer />
+        </motion.div>
+      </AnimatePresence>
+    </ThemeProvider>
   );
 }
 
