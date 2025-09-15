@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, Calendar, Users } from 'lucide-react';
+import { ExternalLink, Github, Calendar, Users,ArrowDown } from 'lucide-react';
 import { Section, Container, Button, GradientText } from '../Styles/GlobalStyles';
 import { projects } from '../Data/Projects';
 
@@ -235,6 +235,32 @@ const ActionButton = styled.button`
     transform: none;
   }
 `;
+
+const ScrollIndicator = styled(motion.div)`
+  position: absolute;
+  bottom: ${props => props.theme.spacing.xl};
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: ${props => props.theme.spacing.sm};
+  cursor: pointer;
+  z-index: 3;
+`;
+
+
+  const scrollToMySkills = () => {
+    document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const ScrollText = styled.span`
+    font-size: ${props => props.theme.fontSizes.sm};
+    color: ${props => props.theme.colors.textSecondary};
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  `;
+
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All');

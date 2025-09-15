@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { User, MapPin, Calendar, Award, Briefcase, GraduationCap } from 'lucide-react';
+import { User, MapPin, Calendar, Award, Briefcase, GraduationCap,ArrowDown} from 'lucide-react';
 import { Section, Container, GradientText } from '../Styles/GlobalStyles';
 
 const AboutSection = styled(Section)`
@@ -191,6 +191,30 @@ const HighlightText = styled.span`
   color: ${props => props.theme.colors.primary};
   font-weight: ${props => props.theme.fontWeights.semibold};
 `;
+// add
+  const ScrollText = styled.span`
+    font-size: ${props => props.theme.fontSizes.sm};
+    color: ${props => props.theme.colors.textSecondary};
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  `;
+  const ScrollIndicator = styled(motion.div)`
+    position: absolute;
+    bottom: ${props => props.theme.spacing.xl};
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: ${props => props.theme.spacing.sm};
+    cursor: pointer;
+    z-index: 3;
+  `;
+
+  const scrollToProjects = () => {
+    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
 
 const About = () => {
   const containerVariants = {
@@ -358,6 +382,7 @@ const About = () => {
           </AboutInfo>
         </AboutContent>
       </AboutContainer>
+        
     </AboutSection>
   );
 };

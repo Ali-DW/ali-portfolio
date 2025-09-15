@@ -255,8 +255,8 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const scrollToProjects = () => {
-    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToAboutMe = () => {
+    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const containerVariants = {
@@ -380,21 +380,6 @@ const Hero = () => {
           </FloatingElements>
         </HeroVisual>
       </HeroContent>
-
-      <ScrollIndicator
-        onClick={scrollToProjects}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2, duration: 0.8 }}
-      >
-        <ScrollText>Scroll Down</ScrollText>
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <ArrowDown size={24} color="currentColor" />
-        </motion.div>
-      </ScrollIndicator>
     </HeroSection>
   );
 };
