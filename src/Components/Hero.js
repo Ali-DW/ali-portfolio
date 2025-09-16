@@ -7,6 +7,7 @@ import { Container, Button, GradientText } from '../Styles/GlobalStyles';
 import meImg from './me.jpg';
 import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import AliCV from '../Assets/Ali_CV.pdf'; 
 
 
 const greetings = [
@@ -290,6 +291,13 @@ const Hero = () => {
       ease: "easeInOut"
     }
   };
+   const downloadCV = () => {
+      // You can replace this with actual CV download link
+      const link = document.createElement('a');
+      link.href = AliCV; // Replace with your actual CV path
+      link.download = 'Ali_Slil_CV.pdf';
+      link.click();
+    };
 
   return (
     <HeroSection>
@@ -304,9 +312,9 @@ const Hero = () => {
               <Greeting
                 key={greetings[greetingIndex].key}
                 variants={itemVariants}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 0 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
+                exit={{ opacity: 0, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
                 {greetings[greetingIndex].text}
@@ -330,7 +338,7 @@ const Hero = () => {
               <Button primary onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
                 View My Work
               </Button>
-              <Button>
+              <Button onClick={()=>downloadCV()}>
                 <Download size={20} style={{ marginRight: '8px' }} />
                 Download CV
               </Button>

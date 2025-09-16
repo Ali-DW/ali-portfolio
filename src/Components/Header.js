@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Download } from 'lucide-react';
 import { Container, Button } from '../Styles/GlobalStyles';
-
+import AliCV from '../Assets/Ali_CV.pdf'; // Ensure you have your CV in the specified path
 const HeaderWrapper = styled(motion.header)`
   position: fixed;
   top: 0;
@@ -203,7 +203,7 @@ const Header = () => {
   const downloadCV = () => {
     // You can replace this with actual CV download link
     const link = document.createElement('a');
-    link.href = '/assets/Ali_Slil_CV.pdf'; // Replace with your actual CV path
+    link.href = AliCV; // Replace with your actual CV path
     link.download = 'Ali_Slil_CV.pdf';
     link.click();
   };
